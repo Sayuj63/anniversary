@@ -1,0 +1,1592 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>21st Anniversary Surprise 💝</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --pink: #FF69B4;
+            --gold: #FFD700;
+            --dark: #1a1a1a;
+            --light: #ffffff;
+            --gradient-1: linear-gradient(135deg, var(--pink) 0%, var(--gold) 100%);
+            --gradient-2: linear-gradient(135deg, #ff6b9d 0%, #ffa500 100%);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            background: var(--gradient-1);
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #ff6b9d 0%, #ffa500 50%, #ff69b4 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Floating Hearts */
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            opacity: 0;
+            animation: floatUp 8s ease-in infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.8;
+            }
+
+            90% {
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Screen */
+        .screen {
+            display: none;
+            min-height: 100vh;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .screen.active {
+            display: flex;
+        }
+
+        .password-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 60px 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            animation: fadeInScale 0.6s ease-out;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .password-container h1 {
+            font-size: 2.5rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .hint {
+            font-size: 1.2rem;
+            color: var(--dark);
+            margin: 20px 0;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .input-group {
+            margin: 30px 0;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 18px 24px;
+            font-size: 1.1rem;
+            border: 3px solid var(--pink);
+            border-radius: 50px;
+            outline: none;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        input:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+        }
+
+        .btn {
+            background: var(--gradient-1);
+            color: white;
+            border: none;
+            padding: 18px 50px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.6);
+        }
+
+        .btn:active {
+            transform: translateY(-1px);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .shake {
+            animation: shake 0.5s ease;
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            10%,
+            30%,
+            50%,
+            70%,
+            90% {
+                transform: translateX(-10px);
+            }
+
+            20%,
+            40%,
+            60%,
+            80% {
+                transform: translateX(10px);
+            }
+        }
+
+        .error-msg {
+            color: #ff4444;
+            margin-top: 15px;
+            font-weight: 600;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .error-msg.show {
+            opacity: 1;
+        }
+
+        /* Quiz Container */
+        .quiz-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 700px;
+            width: 100%;
+            animation: fadeInScale 0.6s ease-out;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .quiz-header h2 {
+            font-size: 2rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--gradient-1);
+            width: 0%;
+            transition: width 0.5s ease;
+            border-radius: 10px;
+        }
+
+        .score-display {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .heart-score {
+            color: var(--pink);
+            opacity: 0.3;
+            transition: all 0.3s ease;
+        }
+
+        .heart-score.filled {
+            opacity: 1;
+            animation: heartPop 0.5s ease;
+        }
+
+        @keyframes heartPop {
+            0% {
+                transform: scale(0);
+            }
+
+            50% {
+                transform: scale(1.3);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .question-container {
+            margin: 30px 0;
+        }
+
+        .question-text {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 25px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .question-password-input {
+            width: 100%;
+            padding: 18px 24px;
+            font-size: 1.1rem;
+            border: 3px solid var(--pink);
+            border-radius: 50px;
+            outline: none;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .question-password-input:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+        }
+
+        .options {
+            display: grid;
+            gap: 15px;
+        }
+
+        .option {
+            background: white;
+            border: 3px solid var(--pink);
+            padding: 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            font-weight: 500;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .option:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
+            border-color: var(--gold);
+        }
+
+        .option.selected {
+            background: var(--gradient-1);
+            color: white;
+            border-color: var(--gold);
+        }
+
+        .option.correct {
+            background: linear-gradient(135deg, #4CAF50 0%, #8BC34A 100%);
+            color: white;
+            border-color: #4CAF50;
+        }
+
+        .option.wrong {
+            background: linear-gradient(135deg, #ff4444 0%, #ff6b6b 100%);
+            color: white;
+            border-color: #ff4444;
+        }
+
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            transform: scale(0);
+            animation: rippleEffect 0.6s ease-out;
+            pointer-events: none;
+        }
+
+        @keyframes rippleEffect {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* Love Game Styles */
+        .game-container {
+            text-align: center;
+        }
+
+        .game-title {
+            font-size: 1.8rem;
+            color: var(--dark);
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .game-instruction {
+            font-size: 1.1rem;
+            color: var(--dark);
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .hearts-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .heart-card {
+            aspect-ratio: 1;
+            background: white;
+            border: 3px solid var(--pink);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .heart-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
+        }
+
+        .heart-card.flipped {
+            background: var(--gradient-1);
+            transform: rotateY(180deg);
+        }
+
+        .heart-card.matched {
+            background: linear-gradient(135deg, #4CAF50 0%, #8BC34A 100%);
+            border-color: #4CAF50;
+            pointer-events: none;
+        }
+
+        .heart-card .front,
+        .heart-card .back {
+            position: absolute;
+            backface-visibility: hidden;
+            transition: transform 0.6s;
+        }
+
+        .heart-card .back {
+            transform: rotateY(180deg);
+        }
+
+        .game-stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        /* Confetti */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: var(--gold);
+            position: absolute;
+            animation: confettiFall 3s ease-out forwards;
+        }
+
+        @keyframes confettiFall {
+            to {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Results Screen */
+        .results-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 60px 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            animation: fadeInScale 0.6s ease-out;
+        }
+
+        .results-container h2 {
+            font-size: 2.5rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .results-message {
+            font-size: 1.3rem;
+            color: var(--dark);
+            margin: 20px 0 40px;
+            line-height: 1.6;
+        }
+
+        /* Finale Screen */
+        .finale-container {
+            text-align: center;
+            max-width: 900px;
+            width: 100%;
+            animation: fadeInScale 0.6s ease-out;
+        }
+
+        .counter-display {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 80px 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .counter-number {
+            font-size: 8rem;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 20px;
+            animation: counterPulse 0.5s ease;
+        }
+
+        @keyframes counterPulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        .counter-label {
+            font-size: 2rem;
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        .forever-text {
+            font-size: 3rem;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite;
+            margin-top: 20px;
+        }
+
+        @keyframes glow {
+
+            0%,
+            100% {
+                filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+            }
+
+            50% {
+                filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.8));
+            }
+        }
+
+        .anniversary-message {
+            font-size: 2rem;
+            color: white;
+            margin: 30px 0;
+            font-weight: 700;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Carousel */
+        .carousel-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            margin-bottom: 30px;
+        }
+
+        .carousel-title {
+            font-size: 1.8rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        .carousel {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+
+        .carousel-nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-dot.active {
+            background: var(--pink);
+            transform: scale(1.3);
+        }
+
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .carousel-arrow:hover {
+            background: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-arrow.prev {
+            left: 20px;
+        }
+
+        .carousel-arrow.next {
+            right: 20px;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            transform: rotate(90deg);
+            background: var(--pink);
+            color: white;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--pink);
+            border: 3px solid var(--pink);
+        }
+
+        .btn-secondary:hover {
+            background: var(--pink);
+            color: white;
+        }
+
+        /* Particles Canvas */
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+
+            .password-container,
+            .quiz-container,
+            .results-container {
+                padding: 40px 25px;
+            }
+
+            .password-container h1 {
+                font-size: 2rem;
+            }
+
+            .hint {
+                font-size: 1rem;
+            }
+
+            .quiz-header h2 {
+                font-size: 1.5rem;
+            }
+
+            .question-text {
+                font-size: 1.2rem;
+            }
+
+            .option {
+                padding: 15px;
+                font-size: 1rem;
+            }
+
+            .hearts-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .heart-card {
+                font-size: 2rem;
+            }
+
+            .counter-number {
+                font-size: 5rem;
+            }
+
+            .counter-label {
+                font-size: 1.5rem;
+            }
+
+            .forever-text {
+                font-size: 2rem;
+            }
+
+            .anniversary-message {
+                font-size: 1.5rem;
+            }
+
+            .carousel-slide img {
+                height: 250px;
+            }
+
+            .carousel-arrow {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+
+            .btn {
+                padding: 15px 40px;
+                font-size: 1rem;
+            }
+        }
+
+        /* Utility Classes */
+        .hidden {
+            display: none !important;
+        }
+
+        .fade-out {
+            animation: fadeOut 0.5s ease forwards;
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg"></div>
+
+    <!-- Floating Hearts -->
+    <div class="floating-hearts" id="floatingHearts"></div>
+
+    <!-- Particles Canvas -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- Password Screen -->
+    <div class="screen active" id="passwordScreen">
+        <div class="password-container" id="passwordContainer">
+            <h1>🎉 Surprise Awaits! 🎉</h1>
+            <div class="hint">What is common between Mom & Dad? 👨👦</div>
+            <div class="input-group">
+                <input type="text" id="passwordInput" placeholder="Enter the magic word..." autocomplete="off">
+            </div>
+            <button class="btn" onclick="checkPassword()">
+                <span>Unlock the Surprise</span>
+            </button>
+            <div class="error-msg" id="errorMsg">Oops! Try again... Think about who made them parents! 💭</div>
+        </div>
+    </div>
+
+    <!-- Quiz Screen -->
+    <div class="screen" id="quizScreen">
+        <div class="quiz-container">
+            <div class="quiz-header">
+                <h2>💝 Love Challenge 💝</h2>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressBar"></div>
+                </div>
+                <div class="score-display">
+                    <span class="heart-score" id="heart1">❤️</span>
+                </div>
+            </div>
+
+            <div class="question-container" id="questionContainer">
+                <!-- Questions/Games will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Screen -->
+    <div class="screen" id="resultsScreen">
+        <div class="results-container">
+            <h2 id="resultsTitle">🎊 Amazing! 🎊</h2>
+            <div class="results-message" id="resultsMessage"></div>
+            <button class="btn" onclick="showFinale()">
+                <span>Reveal the Big Surprise! 🎁</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Finale Screen -->
+    <div class="screen" id="finaleScreen">
+        <div class="finale-container">
+            <div class="counter-display">
+                <div class="counter-number" id="counterNumber">0</div>
+                <div class="counter-label">Years of Love</div>
+                <div class="forever-text hidden" id="foreverText">...and forever! ♾️</div>
+            </div>
+
+            <div class="anniversary-message">
+                Happy Anniversary to the Best Mom & Dad! 🎉🥳
+            </div>
+
+            <div class="carousel-container">
+                <div class="carousel-title">Our Beautiful Journey Together 📸</div>
+                <div class="carousel">
+                    <button class="carousel-arrow prev" onclick="moveCarousel(-1)">‹</button>
+                    <button class="carousel-arrow next" onclick="moveCarousel(1)">›</button>
+                    <div class="carousel-track" id="carouselTrack">
+                        <div class="carousel-slide" onclick="openLightbox(0)">
+                            <img src="anni1.jpeg" alt="Anniversary Memory 1">
+                        </div>
+                        <div class="carousel-slide" onclick="openLightbox(1)">
+                            <img src="anni2.jpeg" alt="Anniversary Memory 2">
+                        </div>
+                        <div class="carousel-slide" onclick="openLightbox(2)">
+                            <img src="anni3.jpeg" alt="Anniversary Memory 3">
+                        </div>
+                        <div class="carousel-slide" onclick="openLightbox(3)">
+                            <img src="anni4.jpeg" alt="Anniversary Memory 4">
+                        </div>
+                        <div class="carousel-slide" onclick="openLightbox(4)">
+                            <img src="anni5.jpeg" alt="Anniversary Memory 5">
+                        </div>
+                        <div class="carousel-slide" onclick="openLightbox(5)">
+                            <img src="anni6.jpeg" alt="Anniversary Memory 6">
+                        </div>
+                        <div class="carousel-slide" onclick="openLightbox(6)">
+                            <img src="anni7.jpeg" alt="Anniversary Memory 7">
+                        </div>
+                        <div class="carousel-slide" onclick="openLightbox(7)">
+                            <img src="anni8.jpeg" alt="Anniversary Memory 8">
+                        </div>
+                        <div class="carousel-slide" onclick="openLightbox(8)">
+                            <img src="anni9.jpeg" alt="Anniversary Memory 9">
+                        </div>
+                        <div class="carousel-slide" onclick="openLightbox(9)">
+                            <img src="anni10.jpeg" alt="Anniversary Memory 10">
+                        </div>
+                        <div class="carousel-slide" onclick="openLightbox(10)">
+                            <img src="anni11.jpeg" alt="Anniversary Memory 11">
+                        </div>
+                        <div class="carousel-slide" onclick="openLightbox(11)">
+                            <img src="anni12.jpeg" alt="Anniversary Memory 12">
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-nav" id="carouselNav">
+                    <span class="carousel-dot active" onclick="goToSlide(0)"></span>
+                    <span class="carousel-dot" onclick="goToSlide(1)"></span>
+                    <span class="carousel-dot" onclick="goToSlide(2)"></span>
+                    <span class="carousel-dot" onclick="goToSlide(3)"></span>
+                    <span class="carousel-dot" onclick="goToSlide(4)"></span>
+                    <span class="carousel-dot" onclick="goToSlide(5)"></span>
+                    <span class="carousel-dot" onclick="goToSlide(6)"></span>
+                    <span class="carousel-dot" onclick="goToSlide(7)"></span>
+                    <span class="carousel-dot" onclick="goToSlide(8)"></span>
+                    <span class="carousel-dot" onclick="goToSlide(9)"></span>
+                    <span class="carousel-dot" onclick="goToSlide(10)"></span>
+                    <span class="carousel-dot" onclick="goToSlide(11)"></span>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn" onclick="restartQuiz()">
+                    <span>Play Again 🔄</span>
+                </button>
+                <button class="btn btn-secondary" onclick="shareQuiz()">
+                    <span>Share This Love 💌</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+        <img id="lightboxImg" src="" alt="Enlarged photo">
+    </div>
+
+    <script>
+        // Challenge Data - First is password question, then game, then final question
+        const challenges = [
+            {
+                type: 'question',
+                question: "What makes us special?",
+                options: ["Endless fights 😅", "Lots of food 🍕", "Sayuj, our precious son ❤️", "All of the above! 🎯"],
+                correct: 3
+            }
+        ];
+
+        let currentChallenge = 0;
+        let score = 0;
+        let carouselIndex = 0;
+
+        // Memory Game Variables
+        let gameCards = [];
+        let flippedCards = [];
+        let matchedPairs = 0;
+        let moves = 0;
+
+        // Initialize floating hearts
+        function createFloatingHearts() {
+            const container = document.getElementById('floatingHearts');
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.textContent = '❤️';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 8 + 's';
+                heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                container.appendChild(heart);
+            }
+        }
+
+        // Password Check
+        function checkPassword() {
+            const input = document.getElementById('passwordInput').value.toLowerCase().trim();
+            const container = document.getElementById('passwordContainer');
+            const errorMsg = document.getElementById('errorMsg');
+
+            if (input === 'me' || input === 'son' || input === 'sayuj') {
+                container.classList.add('fade-out');
+                setTimeout(() => {
+                    document.getElementById('passwordScreen').classList.remove('active');
+                    document.getElementById('quizScreen').classList.add('active');
+                    startChallenges();
+                }, 500);
+            } else {
+                container.classList.add('shake');
+                errorMsg.classList.add('show');
+                setTimeout(() => {
+                    container.classList.remove('shake');
+                }, 500);
+                setTimeout(() => {
+                    errorMsg.classList.remove('show');
+                }, 3000);
+            }
+        }
+
+        // Allow Enter key for password
+        document.getElementById('passwordInput').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        });
+
+        // Start Challenges
+        function startChallenges() {
+            currentChallenge = 0;
+            score = 0;
+            showChallenge();
+        }
+
+        // Show Challenge
+        function showChallenge() {
+            const challenge = challenges[currentChallenge];
+            const container = document.getElementById('questionContainer');
+
+            // Update progress
+            const progress = (currentChallenge / challenges.length) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+
+            if (challenge.type === 'password') {
+                container.innerHTML = `
+                    <div class="question-text">${challenge.question}</div>
+                    <div class="hint" style="font-size: 1rem; margin: 20px 0;">${challenge.hint}</div>
+                    <input type="text" class="question-password-input" id="challengePasswordInput" placeholder="Type the answer...">
+                    <button class="btn" onclick="checkChallengePassword()">
+                        <span>Submit Answer ✨</span>
+                    </button>
+                    <div class="error-msg" id="challengeError">Not quite! Think about the special person in your lives! 💭</div>
+                `;
+
+                // Add enter key listener
+                setTimeout(() => {
+                    document.getElementById('challengePasswordInput').addEventListener('keypress', function (e) {
+                        if (e.key === 'Enter') {
+                            checkChallengePassword();
+                        }
+                    });
+                }, 100);
+            } else if (challenge.type === 'game') {
+                showMemoryGame();
+            } else if (challenge.type === 'question') {
+                container.innerHTML = `
+                    <div class="question-text">${challenge.question}</div>
+                    <div class="options">
+                        ${challenge.options.map((option, index) => `
+                            <div class="option" onclick="selectAnswer(${index})">${option}</div>
+                        `).join('')}
+                    </div>
+                `;
+            }
+        }
+
+        // Check Challenge Password
+        function checkChallengePassword() {
+            const input = document.getElementById('challengePasswordInput').value.toLowerCase().trim();
+            const challenge = challenges[currentChallenge];
+            const errorMsg = document.getElementById('challengeError');
+            const container = document.getElementById('questionContainer');
+
+            if (input === challenge.password) {
+                score++;
+                document.getElementById('heart' + (currentChallenge + 1)).classList.add('filled');
+                createConfetti();
+
+                setTimeout(() => {
+                    currentChallenge++;
+                    if (currentChallenge < challenges.length) {
+                        showChallenge();
+                    } else {
+                        showResults();
+                    }
+                }, 1500);
+            } else {
+                container.classList.add('shake');
+                errorMsg.classList.add('show');
+                setTimeout(() => {
+                    container.classList.remove('shake');
+                }, 500);
+                setTimeout(() => {
+                    errorMsg.classList.remove('show');
+                }, 3000);
+            }
+        }
+
+        // Memory Game
+        function showMemoryGame() {
+            const challenge = challenges[currentChallenge];
+            const container = document.getElementById('questionContainer');
+
+            const symbols = ['💕', '💖', '💗', '💝', '❤️', '💘'];
+            gameCards = [...symbols, ...symbols].sort(() => Math.random() - 0.5);
+            flippedCards = [];
+            matchedPairs = 0;
+            moves = 0;
+
+            container.innerHTML = `
+                <div class="game-container">
+                    <div class="game-title">${challenge.title}</div>
+                    <div class="game-instruction">${challenge.instruction}</div>
+                    <div class="game-stats">
+                        <div>Moves: <span id="movesCount">0</span></div>
+                        <div>Pairs: <span id="pairsCount">0/6</span></div>
+                    </div>
+                    <div class="hearts-grid" id="heartsGrid">
+                        ${gameCards.map((symbol, index) => `
+                            <div class="heart-card" onclick="flipCard(${index})" data-index="${index}">
+                                <div class="front">❓</div>
+                                <div class="back">${symbol}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Flip Card
+        function flipCard(index) {
+            if (flippedCards.length >= 2) return;
+
+            const card = document.querySelector(`[data-index="${index}"]`);
+            if (card.classList.contains('flipped') || card.classList.contains('matched')) return;
+
+            card.classList.add('flipped');
+            flippedCards.push({ index, symbol: gameCards[index], element: card });
+
+            if (flippedCards.length === 2) {
+                moves++;
+                document.getElementById('movesCount').textContent = moves;
+
+                setTimeout(() => {
+                    checkMatch();
+                }, 800);
+            }
+        }
+
+        // Check Match
+        function checkMatch() {
+            const [card1, card2] = flippedCards;
+
+            if (card1.symbol === card2.symbol) {
+                card1.element.classList.add('matched');
+                card2.element.classList.add('matched');
+                matchedPairs++;
+                document.getElementById('pairsCount').textContent = `${matchedPairs}/6`;
+                createConfetti();
+
+                if (matchedPairs === 6) {
+                    score++;
+                    document.getElementById('heart2').classList.add('filled');
+                    setTimeout(() => {
+                        currentChallenge++;
+                        if (currentChallenge < challenges.length) {
+                            showChallenge();
+                        } else {
+                            showResults();
+                        }
+                    }, 1500);
+                }
+            } else {
+                card1.element.classList.remove('flipped');
+                card2.element.classList.remove('flipped');
+            }
+
+            flippedCards = [];
+        }
+
+        // Select Answer
+        function selectAnswer(index) {
+            const options = document.querySelectorAll('.option');
+            const correct = challenges[currentChallenge].correct;
+
+            // Disable all options
+            options.forEach(opt => opt.style.pointerEvents = 'none');
+
+            if (index === correct) {
+                options[index].classList.add('correct');
+                score++;
+                document.getElementById('heart1').classList.add('filled');
+                createConfetti();
+            } else {
+                if (index >= 0) {
+                    options[index].classList.add('wrong');
+                }
+                options[correct].classList.add('correct');
+            }
+
+            setTimeout(() => {
+                currentChallenge++;
+                if (currentChallenge < challenges.length) {
+                    showChallenge();
+                } else {
+                    showResults();
+                }
+            }, 2000);
+        }
+
+        // Ripple Effect
+        document.addEventListener('click', function (e) {
+            if (e.target.classList.contains('option')) {
+                const ripple = document.createElement('span');
+                ripple.classList.add('ripple');
+                ripple.style.left = e.offsetX + 'px';
+                ripple.style.top = e.offsetY + 'px';
+                e.target.appendChild(ripple);
+
+                setTimeout(() => ripple.remove(), 600);
+            }
+        });
+
+        // Confetti
+        function createConfetti() {
+            const colors = ['#FF69B4', '#FFD700', '#ff6b9d', '#ffa500'];
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.top = '-10px';
+                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = Math.random() * 10 + 5 + 'px';
+                confetti.style.height = confetti.style.width;
+                confetti.style.position = 'fixed';
+                document.body.appendChild(confetti);
+
+                setTimeout(() => confetti.remove(), 3000);
+            }
+        }
+
+        // Show Results
+        function showResults() {
+            document.getElementById('quizScreen').classList.remove('active');
+            document.getElementById('resultsScreen').classList.add('active');
+
+            const title = document.getElementById('resultsTitle');
+            const message = document.getElementById('resultsMessage');
+
+            if (score >= 3) {
+                title.textContent = '🎊 Perfect! 🎊';
+                message.textContent = 'You completed all the challenges! Just like your love - absolutely perfect! 💯 Your bond is truly special! ❤️';
+            } else {
+                title.textContent = '💕 Great Effort! 💕';
+                message.textContent = 'Your bond is unbeatable! After 21 years, your love speaks louder than any challenge! ❤️';
+            }
+        }
+
+        // Show Finale
+        function showFinale() {
+            document.getElementById('resultsScreen').classList.remove('active');
+            document.getElementById('finaleScreen').classList.add('active');
+
+            // Start counter animation
+            animateCounter();
+
+            // Create particle effects
+            createParticles();
+        }
+
+        // Animate Counter
+        function animateCounter() {
+            const counterEl = document.getElementById('counterNumber');
+            const foreverText = document.getElementById('foreverText');
+            let count = 0;
+            const target = 21;
+            const duration = 3000;
+            const increment = target / (duration / 50);
+
+            const counterInterval = setInterval(() => {
+                count += increment;
+                if (count >= target) {
+                    count = target;
+                    counterEl.textContent = count;
+                    clearInterval(counterInterval);
+
+                    // Overshoot animation
+                    setTimeout(() => {
+                        counterEl.textContent = '22';
+                        setTimeout(() => {
+                            counterEl.classList.add('hidden');
+                            foreverText.classList.remove('hidden');
+                            createMassiveConfetti();
+                        }, 500);
+                    }, 500);
+                } else {
+                    counterEl.textContent = Math.floor(count);
+                    if (Math.floor(count) % 5 === 0) {
+                        createHeartExplosion();
+                    }
+                }
+            }, 50);
+        }
+
+        // Heart Explosion
+        function createHeartExplosion() {
+            const hearts = ['❤️', '💕', '💖', '💗', '💝'];
+            for (let i = 0; i < 10; i++) {
+                const heart = document.createElement('div');
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.position = 'fixed';
+                heart.style.left = '50%';
+                heart.style.top = '30%';
+                heart.style.fontSize = '2rem';
+                heart.style.pointerEvents = 'none';
+                heart.style.zIndex = '1000';
+
+                const angle = (Math.PI * 2 * i) / 10;
+                const velocity = 200;
+                const vx = Math.cos(angle) * velocity;
+                const vy = Math.sin(angle) * velocity;
+
+                document.body.appendChild(heart);
+
+                let posX = 0;
+                let posY = 0;
+                const animation = setInterval(() => {
+                    posX += vx / 60;
+                    posY += vy / 60;
+                    heart.style.transform = `translate(${posX}px, ${posY}px) scale(${1 - posY / 500})`;
+                    heart.style.opacity = 1 - Math.abs(posY) / 500;
+
+                    if (Math.abs(posY) > 500) {
+                        clearInterval(animation);
+                        heart.remove();
+                    }
+                }, 16);
+            }
+        }
+
+        // Massive Confetti
+        function createMassiveConfetti() {
+            const colors = ['#FF69B4', '#FFD700', '#ff6b9d', '#ffa500', '#ff1493'];
+            for (let i = 0; i < 200; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.top = '-20px';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.width = Math.random() * 15 + 5 + 'px';
+                    confetti.style.height = confetti.style.width;
+                    confetti.style.position = 'fixed';
+                    document.body.appendChild(confetti);
+
+                    setTimeout(() => confetti.remove(), 3000);
+                }, i * 10);
+            }
+        }
+
+        // Particles Canvas
+        function createParticles() {
+            const canvas = document.getElementById('particles-canvas');
+            const ctx = canvas.getContext('2d');
+
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const particles = [];
+            const particleCount = window.innerWidth < 768 ? 30 : 50;
+
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 3 + 1;
+                    this.speedX = Math.random() * 2 - 1;
+                    this.speedY = Math.random() * 2 - 1;
+                    this.color = ['#FF69B4', '#FFD700', '#ff6b9d'][Math.floor(Math.random() * 3)];
+                }
+
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+
+                    if (this.x > canvas.width || this.x < 0) this.speedX *= -1;
+                    if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
+                }
+
+                draw() {
+                    ctx.fillStyle = this.color;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(particle => {
+                    particle.update();
+                    particle.draw();
+                });
+                requestAnimationFrame(animate);
+            }
+
+            animate();
+
+            window.addEventListener('resize', () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
+        }
+
+        // Carousel
+        function moveCarousel(direction) {
+            const track = document.getElementById('carouselTrack');
+            const slides = document.querySelectorAll('.carousel-slide');
+            carouselIndex += direction;
+
+            if (carouselIndex < 0) carouselIndex = slides.length - 1;
+            if (carouselIndex >= slides.length) carouselIndex = 0;
+
+            updateCarousel();
+        }
+
+        function goToSlide(index) {
+            carouselIndex = index;
+            updateCarousel();
+        }
+
+        function updateCarousel() {
+            const track = document.getElementById('carouselTrack');
+            const dots = document.querySelectorAll('.carousel-dot');
+
+            track.style.transform = `translateX(-${carouselIndex * 100}%)`;
+
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === carouselIndex);
+            });
+        }
+
+        // Lightbox
+        function openLightbox(index) {
+            const slides = document.querySelectorAll('.carousel-slide img');
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightboxImg');
+
+            lightboxImg.src = slides[index].src;
+            lightbox.classList.add('active');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
+
+        // Restart Quiz
+        function restartQuiz() {
+            location.reload();
+        }
+
+        // Share Quiz
+        function shareQuiz() {
+            const url = window.location.href;
+            if (navigator.share) {
+                navigator.share({
+                    title: '21st Anniversary Surprise!',
+                    text: 'Check out this amazing anniversary surprise quiz!',
+                    url: url
+                });
+            } else {
+                // Fallback: copy to clipboard
+                navigator.clipboard.writeText(url).then(() => {
+                    alert('Link copied to clipboard! Share the love! 💕');
+                });
+            }
+        }
+
+        // Initialize
+        createFloatingHearts();
+    </script>
+</body>
+
+</html>
